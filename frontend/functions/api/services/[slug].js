@@ -1,13 +1,12 @@
 /**
  * GET /api/services/:slug → one service
- *
  * The [slug] in the filename becomes a route parameter in params.slug.
  */
 
-import { services } from '../../_data.js';
+import { SERVICES } from './index.js';
 
 export function onRequestGet({ params }) {
-  const service = services.find((s) => s.slug === params.slug);
+  const service = SERVICES.find((s) => s.slug === params.slug);
 
   if (!service) {
     return new Response(JSON.stringify({ error: 'Service not found' }), {
