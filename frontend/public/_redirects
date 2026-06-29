@@ -1,0 +1,4 @@
+# Cloudflare Pages SPA fallback —
+# Any request that isn't a real file or function gets the index.html
+# so React Router can handle it client-side. Status 200 (not 301).
+/*    /index.html   200

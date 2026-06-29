@@ -1,0 +1,461 @@
+/* ============================================================
+   West Estimating — Global Styles & Design Tokens
+   ============================================================ */
+
+:root {
+  /* — Color: blueprint navy + amber + clean neutrals — */
+  --c-ink: #0A2540;            /* primary navy — blueprint blue */
+  --c-ink-deep: #061a30;       /* deeper navy for darker surfaces */
+  --c-ink-soft: #1a3a5c;       /* lighter navy for body text on dark */
+  --c-amber: #F59E0B;          /* primary accent — construction amber */
+  --c-amber-deep: #D97706;     /* hover state for amber */
+  --c-amber-soft: #FDE68A;     /* soft amber for highlights */
+  --c-text: #0F172A;           /* near-black for body */
+  --c-text-muted: #475569;     /* muted slate text */
+  --c-text-faint: #94a3b8;     /* very faint slate for captions */
+  --c-bg: #FFFFFF;             /* primary background */
+  --c-bg-warm: #FAFAF7;        /* warm off-white */
+  --c-bg-alt: #F1F5F9;         /* cool section alt */
+  --c-bg-tint: #EFF6FF;        /* tint blue for callouts */
+  --c-border: #E2E8F0;         /* default border */
+  --c-border-strong: #CBD5E1;  /* stronger border for emphasis */
+
+  /* — Type — */
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* — Layout — */
+  --container: 1200px;
+  --container-wide: 1320px;
+  --radius-sm: 6px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* — Shadows — */
+  --shadow-sm: 0 1px 2px rgba(10, 37, 64, 0.06);
+  --shadow: 0 4px 16px -2px rgba(10, 37, 64, 0.08), 0 2px 6px -1px rgba(10, 37, 64, 0.05);
+  --shadow-lg: 0 16px 40px -8px rgba(10, 37, 64, 0.16), 0 4px 12px -2px rgba(10, 37, 64, 0.08);
+  --shadow-amber: 0 8px 24px -6px rgba(245, 158, 11, 0.45);
+
+  /* — Transitions — */
+  --t-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  --t-slow: 380ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   Reset & base
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body {
+  font-family: var(--font-body);
+  color: var(--c-text);
+  background: var(--c-bg);
+  line-height: 1.65;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+a {
+  color: var(--c-ink);
+  text-decoration: none;
+  transition: color var(--t-fast);
+}
+
+a:hover {
+  color: var(--c-amber);
+}
+
+img,
+svg {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: inherit;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 15px;
+}
+
+::selection {
+  background: var(--c-amber);
+  color: var(--c-ink);
+}
+
+/* Visible focus for keyboard users */
+:focus-visible {
+  outline: 2px solid var(--c-amber);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ============================================================
+   Typography
+   ============================================================ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  color: var(--c-ink);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  letter-spacing: -0.025em;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+}
+
+h4 {
+  font-size: 1.125rem;
+}
+
+p {
+  color: var(--c-text-muted);
+}
+
+/* Eyebrow label — small all-caps tag above headlines */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--c-amber-deep);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 14px;
+}
+
+.eyebrow::before {
+  content: '';
+  width: 18px;
+  height: 1.5px;
+  background: var(--c-amber);
+}
+
+/* Dark-section variations */
+.on-dark {
+  color: white;
+}
+.on-dark h1,
+.on-dark h2,
+.on-dark h3 {
+  color: white;
+}
+.on-dark p {
+  color: rgba(255, 255, 255, 0.78);
+}
+.on-dark .eyebrow {
+  color: var(--c-amber);
+}
+
+/* ============================================================
+   Layout primitives
+   ============================================================ */
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.container--wide {
+  max-width: var(--container-wide);
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section--tight {
+  padding: 64px 0;
+}
+
+.section--alt {
+  background: var(--c-bg-alt);
+}
+
+.section--warm {
+  background: var(--c-bg-warm);
+}
+
+.section--dark {
+  background: var(--c-ink);
+  color: white;
+}
+
+.section--gradient {
+  background: linear-gradient(135deg, var(--c-ink-deep) 0%, var(--c-ink) 60%, #133a66 100%);
+  color: white;
+}
+
+.section-head {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 56px;
+}
+
+.section-head p {
+  margin-top: 14px;
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: var(--radius);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  letter-spacing: -0.005em;
+  transition: all var(--t);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.btn--primary {
+  background: var(--c-amber);
+  color: var(--c-ink-deep);
+  box-shadow: var(--shadow-amber);
+}
+
+.btn--primary:hover {
+  background: var(--c-amber-deep);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px -8px rgba(245, 158, 11, 0.55);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.6);
+  color: white;
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--c-ink);
+  border-color: var(--c-border-strong);
+}
+
+.btn--outline:hover {
+  background: var(--c-ink);
+  color: white;
+  border-color: var(--c-ink);
+}
+
+.btn--dark {
+  background: var(--c-ink);
+  color: white;
+}
+
+.btn--dark:hover {
+  background: var(--c-ink-deep);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.btn--lg {
+  padding: 16px 32px;
+  font-size: 1rem;
+}
+
+.btn .arrow {
+  display: inline-block;
+  transition: transform var(--t);
+}
+
+.btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ============================================================
+   Scroll reveal
+   ============================================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  transition-delay: var(--reveal-delay, 0s);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ============================================================
+   Page header (used on About, Services, Contact)
+   ============================================================ */
+
+.page-head {
+  background: linear-gradient(135deg, var(--c-ink-deep) 0%, var(--c-ink) 100%);
+  color: white;
+  padding: 120px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.page-head::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+}
+
+.page-head__inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.page-head h1 {
+  color: white;
+  margin-bottom: 16px;
+}
+
+.page-head .eyebrow {
+  color: var(--c-amber);
+}
+
+.page-head p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.0625rem;
+  line-height: 1.7;
+}
+
+/* Breadcrumb */
+.crumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 18px;
+  letter-spacing: 0.04em;
+}
+
+.crumb a {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.crumb a:hover {
+  color: var(--c-amber);
+}
+
+.crumb .sep {
+  opacity: 0.5;
+}
+
+/* ============================================================
+   Responsive base
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .section {
+    padding: 72px 0;
+  }
+  .section--tight {
+    padding: 48px 0;
+  }
+  .page-head {
+    padding: 88px 0 64px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 18px;
+  }
+  .section {
+    padding: 56px 0;
+  }
+  .btn--lg {
+    padding: 14px 24px;
+    font-size: 0.9375rem;
+  }
+}
